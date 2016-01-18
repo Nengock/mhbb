@@ -1,0 +1,19 @@
+<ion-view view-title="Review">
+  <ion-content class="padding" scroll="false">
+    <div class="list animated slideInRight">
+      <div class="item item-divider">Score</div>
+      <div class="item item-body">
+        <div>
+          {{ review.correct.length }} answered correctly.
+          {{ review.incorrect.length }} answered incorrectly.
+        </div>
+      </div>
+    </div>
+    <div class="animated slideInUp">
+      <button ng-show="review.incorrect.length > 0" class="button button-positive"
+              ng-click="review.retakeIncorrect()">Retry Incorrect</button>
+      <button class="button button-positive" ng-click="review.retake()">Retake</button>
+      <button class="button button-positive" ng-click="review.close()">Close</button>
+    </div>
+  </ion-content>
+</ion-view>

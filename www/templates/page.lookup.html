@@ -1,0 +1,23 @@
+<style>
+  .input-label {
+    font-size: 12px;
+  }
+</style>
+
+<ion-view view-title="Account Lookup">
+  <ion-content scroll="false">
+    <form name="lookupForm">
+      <div class="card animated slideInDown">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="lookup.email" placeholder="Email" ng-required="true">
+        </label>
+      </div>
+      <div class="padding animated slideInUp">
+        <button class="button button-block button-positive"
+                ng-click="lookup.lookup()" ng-disabled="!lookupForm.$valid">Find Account</button>
+        <button class="button button-block button-stable" ng-click="lookup.register()">Create Account</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

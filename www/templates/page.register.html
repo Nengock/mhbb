@@ -1,0 +1,32 @@
+<style>
+  .input-label {
+    font-size: 12px;
+  }
+</style>
+
+<ion-view view-title="Create Account">
+  <ion-content scroll="false">
+    <form name="registerForm">
+      <div class="card">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">First Name</span>
+          <input type="text" ng-model="register.givenName" placeholder="First Name" ng-required="true">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" ng-model="register.familyName" placeholder="Last Name" ng-required="true">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="register.email" placeholder="Email" ng-required="true">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-positive"
+                ng-click="register.register()" ng-disabled="!registerForm.$valid">
+          Register
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

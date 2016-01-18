@@ -1,0 +1,29 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="dashboard.refresh()"></ion-refresher>
+    <div class="list card animated bounceInLeft">
+      <div class="item item-divider">Recent Updates</div>
+      <div class="item item-body">
+        <div>
+          There are <b>20</b> new knowledge checks.
+        </div>
+      </div>
+    </div>
+    <div class="list card animated bounceInRight">
+      <div class="item item-divider">Score</div>
+      <div class="item item-body">
+        <div>
+          Your highest score is <b>88%</b> and you have completed <b>35%</b> of knowledge check.
+        </div>
+      </div>
+    </div>
+    <div class="list card animated bounceInUp">
+      <div class="item item-divider">Upcoming</div>
+      <div class="item item-body">
+        <div>
+          You have <b>29</b> meetings on your calendar tomorrow.
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
