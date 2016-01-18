@@ -26,7 +26,7 @@
     };
 
     vm.close = function() {
-      $state.go('tab.dashboard');
+      $state.go('tab.lessons');
     };
   }
 })();
