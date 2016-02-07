@@ -17,11 +17,6 @@
       vm.selectedOption = null;
       vm.selectedOptions = [];
 
-      api.request('GET', 'questions/' + vm.uuid)
-        .then(function(metadata) {
-          vm.metadata = metadata;
-        });
-
       if (vm.members && vm.members.length > 0) {
         api.request('GET', 'question/' + vm.members[vm.counter])
           .then(function(question) {
