@@ -4,22 +4,14 @@
   angular.module('mhbb.controllers')
     .controller('LessonsController', LessonsController);
 
-  function LessonsController($scope, api) {
+  function LessonsController() {
     var vm = this;
 
-    api.request('GET', 'questions')
-      .then(function(data) {
-        vm.elements = data;
-      });
-
-    vm.refresh = function() {
-      api.request('GET', 'questions')
-        .then(function(data) {
-          vm.elements = data;
-        })
-        .finally(function() {
-          $scope.$broadcast('scroll.refreshComplete');
-        })
-    }
+    vm.elements = [{
+      uuid: '15f9dd6f-8668-4906-9b01-0d5f31749161',
+      path: 'knowledge-check',
+      name: 'Knowledge Check',
+      description: 'Select the best answer to each question or statement.'
+    }];
   }
 })();

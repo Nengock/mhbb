@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('mhbb.controllers')
-    .controller('LessonDetailController', LessonDetailController);
+    .controller('KnowledgeCheckController', KnowledgeCheckController);
 
-  function LessonDetailController($scope, $state, $stateParams, api) {
+  function KnowledgeCheckController($scope, $state, $stateParams, api, knowledgeCheck) {
     var vm = this;
 
     $scope.$on('$ionicView.enter', function() {
@@ -18,21 +18,10 @@
       vm.selectedOptions = [];
 
       if (vm.members && vm.members.length > 0) {
-        api.request('GET', 'question/' + vm.members[vm.counter])
-          .then(function(question) {
-            vm.question = question;
-          });
+        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
       } else {
-        api.request('GET', 'questions/' + vm.uuid + '/members')
-          .then(function(members) {
-            vm.members = members;
-            if (vm.members && vm.members.length > 0) {
-              api.request('GET', 'question/' + vm.members[vm.counter])
-                .then(function(question) {
-                  vm.question = question;
-                });
-            }
-          });
+        vm.members = shuffle(knowledgeCheck.getQuestions());
+        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
       }
     });
 
@@ -62,10 +51,7 @@
           vm.counter++;
           // set the selection if available
           vm.selectedOption = vm.selectedOptions[vm.counter];
-          api.request('GET', 'question/' + vm.members[vm.counter])
-            .then(function(question) {
-              vm.question = question;
-            });
+          vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
         } else {
           var answers = [];
           for (var i = 0; i < vm.selectedOptions.length; i++) {
@@ -92,17 +78,14 @@
     vm.previousQuestion = function() {
       if (vm.counter > 0) {
         vm.counter--;
-        api.request('GET', 'question/' + vm.members[vm.counter])
-          .then(function(question) {
-            vm.question = question;
-            var hashCode = vm.selectedOptions[vm.counter];
-            for (var i = 0; i < vm.question.options.length; i++) {
-              var optionHashCode = vm.hashCode(vm.question.options[i]);
-              if (optionHashCode === hashCode) {
-                vm.selectedOption = optionHashCode;
-              }
-            }
-          })
+        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        var hashCode = vm.selectedOptions[vm.counter];
+        for (var i = 0; i < vm.question.options.length; i++) {
+          var optionHashCode = vm.hashCode(vm.question.options[i]);
+          if (optionHashCode === hashCode) {
+            vm.selectedOption = optionHashCode;
+          }
+        }
       }
     };
 
@@ -115,6 +98,25 @@
         hash |= 0;
       }
       return hash;
+    };
+
+    function shuffle(array) {
+      var currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
     }
   }
 })();

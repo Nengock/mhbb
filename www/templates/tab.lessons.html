@@ -2,11 +2,11 @@
   <ion-content overflow-scroll="false">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="lessons.refresh()"></ion-refresher>
     <ion-list>
-      <ion-item ui-sref="tab.lesson-detail({uuid: element.uuid, name: element.name})" class="item-text-wrap item-icon-right" ng-repeat="element in lessons.elements">
+      <ion-item ng-href="#/tab/{{element.path}}"
+                class="item-text-wrap item-icon-right" ng-repeat="element in lessons.elements">
         <h2>{{element.name}}</h2>
         <p>{{element.description}}</p>
         <i class="icon ion-ios-arrow-right"></i>
-      </ion-item>
       </ion-item>
     </ion-list>
   </ion-content>

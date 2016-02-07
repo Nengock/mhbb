@@ -1,0 +1,35 @@
+<style>
+  .item-divider {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+</style>
+<ion-view view-title="Questions">
+  <ion-content class="padding" overflow-scroll="true">
+    <div>
+      <p>Question {{ knowledgeCheck.counter + 1 }} of {{ knowledgeCheck.members.length }}</p>
+    </div>
+    <ion-list>
+      <div class="item item-divider item-positive">{{ knowledgeCheck.question.questionText }}</div>
+      <ion-radio class="item-text-wrap" ng-repeat="questionOption in knowledgeCheck.question.questionOptions"
+                 ng-value="knowledgeCheck.hashCode(questionOption)"
+                 ng-model="knowledgeCheck.selectedOption"
+                 ng-change="knowledgeCheck.optionSelected()">
+        {{ questionOption }}
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+  <div>
+    <button class="round-overlay-button bottom-right positive button button-icon icon light"
+            ng-class="{'positive': knowledgeCheck.displayNext(), 'stable': !knowledgeCheck.displayNext()}"
+            ng-click="knowledgeCheck.nextQuestion()">
+      <i class="icon"
+         ng-class="{'ion-ios-arrow-right': !knowledgeCheck.finalQuestion(), 'ion-android-upload': knowledgeCheck.finalQuestion()}"></i>
+    </button>
+    <button class="round-overlay-button bottom-left positive button button-icon icon light"
+            ng-class="{'positive': knowledgeCheck.displayPrevious(), 'stable': !knowledgeCheck.displayPrevious()}"
+            ng-click="knowledgeCheck.previousQuestion()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+  </div>
+</ion-view>

@@ -73,17 +73,16 @@
           }
         }
       })
-      .state('tab.lesson-detail', {
-        url: '/lessons/:uuid',
+      .state('tab.knowledge-check', {
+        url: '/knowledge-check',
         views: {
           'tab-lessons': {
-            templateUrl: 'templates/tab.lesson.detail.html',
-            controller: 'LessonDetailController',
-            controllerAs: 'lesson'
+            templateUrl: 'templates/tab.knowledge-check.html',
+            controller: 'KnowledgeCheckController',
+            controllerAs: 'knowledgeCheck'
           }
         },
         params: {
-          uuid: null,
           correct: [],
           incorrect: []
         }
