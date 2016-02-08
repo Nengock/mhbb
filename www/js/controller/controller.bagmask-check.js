@@ -4,7 +4,7 @@
   angular.module('mhbb.controllers')
     .controller('BagMaskCheckController', BagMaskCheckController);
 
-  function BagMaskCheckController($scope, $state, $stateParams, api, bagMaskCheck) {
+  function BagMaskCheckController($scope, $state, $stateParams, localStorage, bagMaskCheck) {
     var vm = this;
 
     $scope.$on('$ionicView.enter', function() {
@@ -63,6 +63,9 @@
               question: question
             })
           }
+
+          var attempt = localStorage.get('evaluation.attempt') || 0;
+          localStorage.set('evaluation.attempt', attempt + 1);
 
           var validated = bagMaskCheck.validate(answers);
           $state.go('bagmask-review', {

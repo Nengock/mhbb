@@ -4,7 +4,7 @@
   angular.module('mhbb.controllers')
     .controller('KnowledgeCheckController', KnowledgeCheckController);
 
-  function KnowledgeCheckController($scope, $state, $stateParams, api, knowledgeCheck) {
+  function KnowledgeCheckController($scope, $state, $stateParams, localStorage, knowledgeCheck) {
     var vm = this;
 
     $scope.$on('$ionicView.enter', function() {
@@ -61,6 +61,9 @@
               question: question
             })
           }
+
+          var attempt = localStorage.get('evaluation.attempt') || 0;
+          localStorage.set('evaluation.attempt', attempt + 1);
 
           var validated = knowledgeCheck.validate(answers);
           $state.go('knowledge-review', {

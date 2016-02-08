@@ -4,17 +4,10 @@
   angular.module('mhbb.controllers')
     .controller('DashboardController', DashboardController);
 
-  function DashboardController($scope, api) {
+  function DashboardController($scope, localStorage) {
     var vm = this;
 
-    vm.refresh = function() {
-      api.request('GET', 'questions')
-        .then(function(data) {
-          vm.questions = data;
-        })
-        .finally(function() {
-          $scope.$broadcast('scroll.refreshComplete');
-        })
-    }
+    vm.attempt = localStorage.get('evaluation.attempt') || 0;
+
   }
 })();

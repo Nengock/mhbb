@@ -4,7 +4,7 @@
   angular.module('mhbb.controllers')
     .controller('RegisterController', RegisterController);
 
-  function RegisterController($state, api) {
+  function RegisterController($state, localStorage) {
     var vm = this;
 
     vm.register = register;
@@ -15,13 +15,12 @@
         givenName: vm.givenName,
         familyName: vm.familyName
       };
-      api.request('POST', 'user', data)
-        .then(function(data) {
-          if (data.uuid) {
-            localStorage.setItem('user', data.uuid);
-            $state.go('tab.dashboard');
-          }
-        });
+
+      var users = JSON.parse(localStorage.get('users') || []);
+      users.push(data);
+      localStorage.set('users', JSON.stringify(users));
+
+      $state.go('tab.dashboard');
     }
   }
 })();

@@ -117,7 +117,7 @@
 
     $urlRouterProvider.otherwise(function($injector, $location) {
       var localStorage = $injector.get('localStorage');
-      var path = localStorage.get('user') ? '/tab/dashboard' : 'lookup';
+      var path = localStorage.get('users') ? '/tab/dashboard' : 'register';
       $location.path(path);
     });
 
