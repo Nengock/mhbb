@@ -16,7 +16,7 @@
         familyName: vm.familyName
       };
 
-      var users = JSON.parse(localStorage.get('users') || []);
+      var users = JSON.parse(localStorage.get('users') || '[]');
       users.push(data);
       localStorage.set('users', JSON.stringify(users));
 
