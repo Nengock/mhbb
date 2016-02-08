@@ -1,0 +1,40 @@
+<style>
+  .item-divider {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+</style>
+<ion-view view-title="Bag Mask">
+  <ion-content class="padding" overflow-scroll="true">
+    <div>
+      <p>Question {{ bagMask.counter + 1 }} of {{ bagMask.members.length }}</p>
+    </div>
+    <ion-list>
+      <div class="item item-divider item-positive item-text-wrap">
+        <h2><strong>{{ bagMask.question.questionText }}</strong></h2>
+        <ol>
+          <li>{{ bagMask.question.questionDescription }}</li>
+        </ol>
+      </div>
+      <ion-radio class="item-text-wrap" ng-repeat="questionOption in bagMask.question.questionOptions"
+                 ng-value="bagMask.hashCode(questionOption)"
+                 ng-model="bagMask.selectedOption"
+                 ng-change="bagMask.optionSelected()">
+        {{ questionOption }}
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+  <div>
+    <button class="round-overlay-button bottom-right positive button button-icon icon light"
+            ng-class="{'positive': bagMask.displayNext(), 'stable': !bagMask.displayNext()}"
+            ng-click="bagMask.nextQuestion()">
+      <i class="icon"
+         ng-class="{'ion-ios-arrow-right': !bagMask.finalQuestion(), 'ion-android-upload': bagMask.finalQuestion()}"></i>
+    </button>
+    <button class="round-overlay-button bottom-left positive button button-icon icon light"
+            ng-class="{'positive': bagMask.displayPrevious(), 'stable': !bagMask.displayPrevious()}"
+            ng-click="bagMask.previousQuestion()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+  </div>
+</ion-view>

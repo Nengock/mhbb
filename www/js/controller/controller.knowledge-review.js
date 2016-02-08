@@ -2,27 +2,23 @@
   'use strict';
 
   angular.module('mhbb.controllers')
-    .controller('ReviewController', ReviewController);
+    .controller('KnowledgeReviewController', KnowledgeReviewController);
 
-  function ReviewController($state, $stateParams) {
+  function KnowledgeReviewController($state, $stateParams) {
     var vm = this;
-    vm.uuid = $stateParams.uuid;
 
     vm.correct = $stateParams.correct;
     vm.incorrect = $stateParams.incorrect;
 
     vm.retakeIncorrect = function() {
-      $state.go('tab.lesson-detail', {
-        uuid: vm.uuid,
+      $state.go('knowledge-check', {
         correct: vm.correct,
         incorrect: vm.incorrect
       });
     };
 
     vm.retake = function() {
-      $state.go('tab.lesson-detail', {
-        uuid: vm.uuid
-      });
+      $state.go('knowledge-check');
     };
 
     vm.close = function() {

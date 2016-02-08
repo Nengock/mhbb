@@ -2,12 +2,13 @@
   'use strict';
 
   angular.module('mhbb.controllers')
-    .controller('KnowledgeCheckController', KnowledgeCheckController);
+    .controller('BagMaskController', BagMaskController);
 
-  function KnowledgeCheckController($scope, $state, $stateParams, api, knowledgeCheck) {
+  function BagMaskController($scope, $state, $stateParams, api, bagMask) {
     var vm = this;
 
     $scope.$on('$ionicView.enter', function() {
+      vm.uuid = $stateParams.uuid;
       vm.correct = $stateParams.correct;
       vm.incorrect = $stateParams.incorrect;
       vm.members = $stateParams.incorrect;
@@ -17,10 +18,10 @@
       vm.selectedOptions = [];
 
       if (vm.members && vm.members.length > 0) {
-        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
       } else {
-        vm.members = shuffle(knowledgeCheck.getQuestions());
-        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.members = bagMask.getQuestions();
+        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
       }
     });
 
@@ -50,7 +51,7 @@
           vm.counter++;
           // set the selection if available
           vm.selectedOption = vm.selectedOptions[vm.counter];
-          vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+          vm.question = bagMask.getQuestion(vm.members[vm.counter]);
         } else {
           var answers = [];
           for (var i = 0; i < vm.selectedOptions.length; i++) {
@@ -62,11 +63,14 @@
             })
           }
 
-          var validated = knowledgeCheck.validate(answers);
-          $state.go('knowledge-review', {
-            correct: validated.correct.concat(vm.correct),
-            incorrect: validated.incorrect
-          });
+          api.request('POST', 'questions/validate', {answers: answers})
+            .then(function(data) {
+              $state.go('review', {
+                uuid: vm.uuid,
+                correct: data.correct.concat(vm.correct),
+                incorrect: data.incorrect
+              });
+            });
         }
       }
     };
@@ -74,7 +78,7 @@
     vm.previousQuestion = function() {
       if (vm.counter > 0) {
         vm.counter--;
-        vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
         var hashCode = vm.selectedOptions[vm.counter];
         for (var i = 0; i < vm.question.options.length; i++) {
           var optionHashCode = vm.hashCode(vm.question.options[i]);
@@ -95,24 +99,5 @@
       }
       return hash;
     };
-
-    function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
-
-      // While there remain elements to shuffle...
-      while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-      }
-
-      return array;
-    }
   }
 })();

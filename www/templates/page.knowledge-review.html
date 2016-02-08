@@ -1,0 +1,19 @@
+<ion-view view-title="Knowledge Check Review" hide-back-button="true">
+  <ion-content class="padding" scroll="false">
+    <div class="list animated slideInRight">
+      <div class="item item-divider">Score</div>
+      <div class="item item-body">
+        <div>
+          {{ knowledgeReview.correct.length }} answered correctly.
+          {{ knowledgeReview.incorrect.length }} answered incorrectly.
+        </div>
+      </div>
+    </div>
+    <div class="animated slideInUp">
+      <button ng-show="knowledgeReview.incorrect.length > 0" class="button button-positive"
+              ng-click="knowledgeReview.retakeIncorrect()">Retry Incorrect</button>
+      <button class="button button-positive" ng-click="knowledgeReview.retake()">Retake</button>
+      <button class="button button-positive" ng-click="knowledgeReview.close()">Close</button>
+    </div>
+  </ion-content>
+</ion-view>

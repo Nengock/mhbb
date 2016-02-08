@@ -35,15 +35,24 @@
         controllerAs: 'register',
         templateUrl: 'templates/page.register.html'
       })
-      .state('review', {
-        url: '/review/:uuid',
-        controller: 'ReviewController',
-        controllerAs: 'review',
-        templateUrl: 'templates/page.review.html',
+      .state('knowledge-review', {
+        url: '/knowledge-review',
+        controller: 'KnowledgeReviewController',
+        controllerAs: 'knowledgeReview',
+        templateUrl: 'templates/page.knowledge-review.html',
         params: {
-          uuid: null,
           incorrect: [],
           correct: []
+        }
+      })
+      .state('knowledge-check', {
+        url: '/knowledge-check',
+        controller: 'KnowledgeCheckController',
+        controllerAs: 'knowledgeCheck',
+        templateUrl: 'templates/page.knowledge-check.html',
+        params: {
+          correct: [],
+          incorrect: []
         }
       })
       // setup an abstract state for the tabs directive
@@ -73,13 +82,13 @@
           }
         }
       })
-      .state('tab.knowledge-check', {
-        url: '/knowledge-check',
+      .state('tab.bag-mask', {
+        url: '/bag-mask',
         views: {
           'tab-lessons': {
-            templateUrl: 'templates/tab.knowledge-check.html',
-            controller: 'KnowledgeCheckController',
-            controllerAs: 'knowledgeCheck'
+            templateUrl: 'templates/tab.bag-mask.html',
+            controller: 'BagMaskController',
+            controllerAs: 'bagMask'
           }
         },
         params: {

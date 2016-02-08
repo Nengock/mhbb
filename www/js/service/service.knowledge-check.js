@@ -213,7 +213,26 @@
       });
     }
 
-    function validate() {
+    function validate(answers) {
+      var correct = [];
+      var incorrect = [];
+      _.forEach(answers, function(answer) {
+        var question = _.find(questions, function(question) {
+          if (answer.question === question.questionUuid) {
+            return question;
+          }
+        });
+        if (question.answerText === answer.answer) {
+          correct.push(answer.question);
+        } else {
+          incorrect.push(answer.question);
+        }
+      });
+
+      return {
+        correct: correct,
+        incorrect: incorrect
+      }
     }
 
     function hashCode(value) {
