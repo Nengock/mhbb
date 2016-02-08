@@ -1,0 +1,19 @@
+<ion-view view-title="Bag Mask Ventilation Skills Review" hide-back-button="true">
+  <ion-content class="padding" scroll="false">
+    <div class="list animated slideInRight">
+      <div class="item item-divider">Attempt {{ bagMaskReview.attempt }}</div>
+      <div class="item item-body">
+        <div>
+          <ol>
+            <li>{{ bagMaskReview.correct.length }} of 10 steps ticked 'Done'.</li>
+            <li>{{ bagMaskReview.incorrect.length }} of 10 steps ticked 'Not Done'.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="animated slideInUp">
+      <button ng-show="{{ bagMaskReview.attempt < 4 }}" class="button button-positive" ng-click="bagMaskReview.retake()">Retake</button>
+      <button class="button button-positive" ng-click="bagMaskReview.close()">Close</button>
+    </div>
+  </ion-content>
+</ion-view>

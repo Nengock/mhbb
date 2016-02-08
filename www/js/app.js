@@ -55,6 +55,28 @@
           incorrect: []
         }
       })
+      .state('bagmask-check', {
+        url: '/bagmask-check',
+        controller: 'BagMaskCheckController',
+        controllerAs: 'bagMaskCheck',
+        templateUrl: 'templates/page.bagmask-check.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
+      .state('bagmask-review', {
+        url: '/bagmask-review',
+        controller: 'BagMaskReviewController',
+        controllerAs: 'bagMaskReview',
+        templateUrl: 'templates/page.bagmask-review.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',
@@ -82,20 +104,6 @@
           }
         }
       })
-      .state('tab.bag-mask', {
-        url: '/bag-mask',
-        views: {
-          'tab-lessons': {
-            templateUrl: 'templates/tab.bag-mask.html',
-            controller: 'BagMaskController',
-            controllerAs: 'bagMask'
-          }
-        },
-        params: {
-          correct: [],
-          incorrect: []
-        }
-      })
       .state('tab.settings', {
         url: '/settings',
         views: {
@@ -107,7 +115,7 @@
         }
       });
 
-    $urlRouterProvider.otherwise(function($injector, $location){
+    $urlRouterProvider.otherwise(function($injector, $location) {
       var localStorage = $injector.get('localStorage');
       var path = localStorage.get('user') ? '/tab/dashboard' : 'lookup';
       $location.path(path);

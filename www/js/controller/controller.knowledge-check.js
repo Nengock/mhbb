@@ -76,8 +76,8 @@
         vm.counter--;
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
         var hashCode = vm.selectedOptions[vm.counter];
-        for (var i = 0; i < vm.question.options.length; i++) {
-          var optionHashCode = vm.hashCode(vm.question.options[i]);
+        for (var i = 0; i < vm.question.questionOptions.length; i++) {
+          var optionHashCode = vm.hashCode(vm.question.questionOptions[i]);
           if (optionHashCode === hashCode) {
             vm.selectedOption = optionHashCode;
           }

@@ -2,13 +2,14 @@
   'use strict';
 
   angular.module('mhbb.controllers')
-    .controller('BagMaskController', BagMaskController);
+    .controller('BagMaskCheckController', BagMaskCheckController);
 
-  function BagMaskController($scope, $state, $stateParams, api, bagMask) {
+  function BagMaskCheckController($scope, $state, $stateParams, api, bagMaskCheck) {
     var vm = this;
 
     $scope.$on('$ionicView.enter', function() {
-      vm.uuid = $stateParams.uuid;
+      vm.attempt = $stateParams.attempt || 1;
+
       vm.correct = $stateParams.correct;
       vm.incorrect = $stateParams.incorrect;
       vm.members = $stateParams.incorrect;
@@ -18,10 +19,10 @@
       vm.selectedOptions = [];
 
       if (vm.members && vm.members.length > 0) {
-        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
+        vm.question = bagMaskCheck.getQuestion(vm.members[vm.counter]);
       } else {
-        vm.members = bagMask.getQuestions();
-        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
+        vm.members = bagMaskCheck.getQuestions();
+        vm.question = bagMaskCheck.getQuestion(vm.members[vm.counter]);
       }
     });
 
@@ -51,7 +52,7 @@
           vm.counter++;
           // set the selection if available
           vm.selectedOption = vm.selectedOptions[vm.counter];
-          vm.question = bagMask.getQuestion(vm.members[vm.counter]);
+          vm.question = bagMaskCheck.getQuestion(vm.members[vm.counter]);
         } else {
           var answers = [];
           for (var i = 0; i < vm.selectedOptions.length; i++) {
@@ -63,14 +64,12 @@
             })
           }
 
-          api.request('POST', 'questions/validate', {answers: answers})
-            .then(function(data) {
-              $state.go('review', {
-                uuid: vm.uuid,
-                correct: data.correct.concat(vm.correct),
-                incorrect: data.incorrect
-              });
-            });
+          var validated = bagMaskCheck.validate(answers);
+          $state.go('bagmask-review', {
+            attempt: vm.attempt,
+            correct: validated.correct.concat(vm.correct),
+            incorrect: validated.incorrect
+          });
         }
       }
     };
@@ -78,10 +77,10 @@
     vm.previousQuestion = function() {
       if (vm.counter > 0) {
         vm.counter--;
-        vm.question = bagMask.getQuestion(vm.members[vm.counter]);
+        vm.question = bagMaskCheck.getQuestion(vm.members[vm.counter]);
         var hashCode = vm.selectedOptions[vm.counter];
-        for (var i = 0; i < vm.question.options.length; i++) {
-          var optionHashCode = vm.hashCode(vm.question.options[i]);
+        for (var i = 0; i < vm.question.questionOptions.length; i++) {
+          var optionHashCode = vm.hashCode(vm.question.questionOptions[i]);
           if (optionHashCode === hashCode) {
             vm.selectedOption = optionHashCode;
           }
