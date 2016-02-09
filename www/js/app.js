@@ -77,6 +77,50 @@
           incorrect: []
         }
       })
+      .state('osce-check', {
+        url: '/osce-check',
+        controller: 'OsceCheckController',
+        controllerAs: 'osceCheck',
+        templateUrl: 'templates/page.osce-check.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
+      .state('osce-review', {
+        url: '/osce-review',
+        controller: 'OsceReviewController',
+        controllerAs: 'osceReview',
+        templateUrl: 'templates/page.osce-review.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
+      .state('delivery-check', {
+        url: '/delivery-check',
+        controller: 'DeliveryCheckController',
+        controllerAs: 'deliveryCheck',
+        templateUrl: 'templates/page.delivery-check.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
+      .state('delivery-review', {
+        url: '/delivery-review',
+        controller: 'DeliveryReviewController',
+        controllerAs: 'deliveryReview',
+        templateUrl: 'templates/page.delivery-review.html',
+        params: {
+          attempt: null,
+          correct: [],
+          incorrect: []
+        }
+      })
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: '/tab',

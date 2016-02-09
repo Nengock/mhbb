@@ -17,6 +17,16 @@
       path: 'bagmask-check',
       name: 'Bag Mask Ventilation Skills',
       description: 'Select the best answer to each question or statement.'
+    }, {
+      uuid: '4464ee76-b51b-4543-ab72-bfd848552ecb',
+      path: 'osce-check',
+      name: 'OSCE Station A',
+      description: 'Select the best answer to each question or statement.'
+    }, {
+      uuid: 'b4723570-ccac-4fb2-add3-474a177a376f',
+      path: 'delivery-check',
+      name: 'Delivery Observation Checklist',
+      description: 'Select the best answer to each question or statement.'
     }];
   }
 })();

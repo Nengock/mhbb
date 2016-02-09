@@ -1,0 +1,35 @@
+<style>
+  .item-divider {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+</style>
+<ion-view view-title="OSCE Station A">
+  <ion-content class="padding" overflow-scroll="true">
+    <div>
+      <p>Question {{ osceCheck.counter + 1 }} of {{ osceCheck.members.length }}</p>
+    </div>
+    <ion-list>
+      <div class="item item-divider item-positive item-text-wrap">{{ osceCheck.question.questionText }}</div>
+      <ion-radio class="item-text-wrap" ng-repeat="questionOption in osceCheck.question.questionOptions"
+                 ng-value="osceCheck.hashCode(questionOption)"
+                 ng-model="osceCheck.selectedOption"
+                 ng-change="osceCheck.optionSelected()">
+        {{ questionOption }}
+      </ion-radio>
+    </ion-list>
+  </ion-content>
+  <div>
+    <button class="round-overlay-button bottom-right positive button button-icon icon light"
+            ng-class="{'positive': osceCheck.displayNext(), 'stable': !osceCheck.displayNext()}"
+            ng-click="osceCheck.nextQuestion()">
+      <i class="icon"
+         ng-class="{'ion-ios-arrow-right': !osceCheck.finalQuestion(), 'ion-android-upload': osceCheck.finalQuestion()}"></i>
+    </button>
+    <button class="round-overlay-button bottom-left positive button button-icon icon light"
+            ng-class="{'positive': osceCheck.displayPrevious(), 'stable': !osceCheck.displayPrevious()}"
+            ng-click="osceCheck.previousQuestion()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+  </div>
+</ion-view>
