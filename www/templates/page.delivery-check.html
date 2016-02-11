@@ -11,12 +11,32 @@
     </div>
     <ion-list>
       <div class="item item-divider item-positive item-text-wrap">{{ deliveryCheck.question.questionText }}</div>
-      <ion-radio class="item-text-wrap" ng-repeat="questionOption in deliveryCheck.question.questionOptions"
-                 ng-value="deliveryCheck.hashCode(questionOption)"
-                 ng-model="deliveryCheck.selectedOption"
-                 ng-change="deliveryCheck.optionSelected()">
-        {{ questionOption }}
-      </ion-radio>
+      <div ng-switch="deliveryCheck.question.answerType">
+        <label class="item item-input" ng-switch-when="Text">
+          <input type="text" placeholder="Type your answer here" ng-model="deliveryCheck.selectedOption" >
+        </label>
+        <label class="item item-input"  ng-switch-when="Date">
+          <input type="date" ng-model="deliveryCheck.selectedOption">
+        </label>
+        <label class="item item-input"  ng-switch-when="Time">
+          <input type="time" ng-model="deliveryCheck.selectedOption">
+        </label>
+        <div ng-switch-when="Multi">
+          <ion-checkbox class="item-text-wrap" ng-repeat="questionOption in deliveryCheck.question.questionOptions"
+                     ng-value="deliveryCheck.hashCode(questionOption)"
+                     ng-model="deliveryCheck.selectedOption[deliveryCheck.hashCode(questionOption)]">
+            {{ questionOption }}
+          </ion-checkbox>
+        </div>
+        <div ng-switch-default>
+          <ion-radio class="item-text-wrap" ng-repeat="questionOption in deliveryCheck.question.questionOptions"
+                     ng-value="deliveryCheck.hashCode(questionOption)"
+                     ng-model="deliveryCheck.selectedOption"
+                     ng-change="deliveryCheck.optionSelected()">
+            {{ questionOption }}
+          </ion-radio>
+        </div>
+      </div>
     </ion-list>
   </ion-content>
   <div>

@@ -21,10 +21,18 @@
         "Rita Mukosa",
         "Sammy Onyapidi"
       ]
+    },  {
+      "questionUuid": uuid.v1(),
+      "questionText": "Learner’s HBB ID",
+      "answerType"  : "Text"
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "What is the date you are completing this form",
+      "answerType"  : "Date"
     }, {
       "questionUuid": uuid.v1(),
-      "questionText": "Were the following delivery or resuscitation items available? ",
-      //"answerText": hashCode("Done"),
+      "questionText": "Were the following delivery or resuscitation items available? (can select more than one)",
+      "answerType"  : "Multi",
       "questionOptions": [
         "Clean delivery kit",
         "Neonatal mask that fits the resuscitator device",
@@ -96,6 +104,10 @@
       ]
     },{
       "questionUuid": uuid.v1(),
+      "questionText": "What time was mother admitted",
+      "answerType"  : "Time"
+    }, {
+      "questionUuid": uuid.v1(),
       "questionText": "Was fetal heart rate present at admission? ",
       //"answerText": hashCode("Yes"),
       "questionOptions": [
@@ -115,7 +127,8 @@
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Presentation ",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Other"),
+      "goTo" : 16, //if not answerText
       "questionOptions": [
         "Cephalic",
         "Breech",
@@ -123,6 +136,10 @@
         "Transverse",
         "Other"
       ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Please describe what is “Other” ",
+      "answerType"  : "Text"
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Mode of delivery ",
@@ -211,7 +228,8 @@
     {
       "questionUuid": uuid.v1(),
       "questionText": "Maternal Infection",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Other"),
+      "goTo" : 28,
       "questionOptions": [
         "Uterine",
         "Malaria",
@@ -219,15 +237,28 @@
         "None",
         "Other"
       ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Please describe what is “Other Maternal Infection” ",
+      "answerType"  : "Text"
     },
     {
       "questionUuid": uuid.v1(),
       "questionText": "Other complications ",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Yes"),
+      "goTo"      : 30,
       "questionOptions": [
         "Yes",
         "No"
       ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Please specify other complication ",
+      "answerType"  : "Text"
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Time of birth ",
+      "answerType"  : "Time"
     },
     {
       "questionUuid": uuid.v1(),
@@ -250,11 +281,16 @@
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Did the baby cry or breathe? ",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Yes"),
+      "goTo" : 41,
       "questionOptions": [
         "Yes",
         "No"
       ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "At what time did the baby cry",
+      "answerType"  : "Time"
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Is the airway cleared if unresponsive?  ",
@@ -275,7 +311,8 @@
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Who cut the cord? ",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Other"),
+      "goTo" : 39,
       "questionOptions": [
         "Nurse Midwife",
         "Clinical Officer",
@@ -288,6 +325,10 @@
       ]
     },{
       "questionUuid": uuid.v1(),
+      "questionText": "Please mention who is the “Other” person cut the cord ",
+      "answerType"  : "Text"
+    },{
+      "questionUuid": uuid.v1(),
       "questionText": "When cutting the cord did the following occur ",
       //"answerText": hashCode("Done"),
       "questionOptions": [
@@ -298,7 +339,8 @@
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Birth attendant encourages early breastfeeding ",
-      //"answerText": hashCode("Done"),
+      "answerText": hashCode("Done"),
+      "goTo"  : 50,
       "questionOptions": [
         "Yes",
         "No",
@@ -334,6 +376,15 @@
       ]
     },{
       "questionUuid": uuid.v1(),
+      "questionText": "Baby does NOT respond to initial resuscitation efforts",
+      "answerText": hashCode("Yes"),
+      "goTo" : 50,
+      "questionOptions": [
+        "Yes",
+        "No"
+      ]
+    },{
+      "questionUuid": uuid.v1(),
       "questionText": "Bag-and-mask ventilation (BMV) attempts begin w/in 60 seconds after birth? ",
       //"answerText": hashCode("Done"),
       "questionOptions": [
@@ -341,6 +392,10 @@
         "No",
         "Not Applicable"
       ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Time resuscitation began ",
+      "answerType"  : "Time"
     },{
       "questionUuid": uuid.v1(),
       "questionText": "If necessary, was ventilation improved correctly? ",
@@ -369,6 +424,13 @@
         "Transferred to Post-Natal Ward with mother",
         "Transferred to Referral facility",
         "Died. A Perinatal Death Audit Form (mHBB14) should be filled out within 48 hours"
+      ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Submit Answers",
+      //"answerText": hashCode("Done"),
+      "questionOptions": [
+        "Yes"
       ]
     },];
 

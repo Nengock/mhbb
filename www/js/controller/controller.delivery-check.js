@@ -48,11 +48,22 @@
         // save the current selection
         vm.selectedOptions[vm.counter] = vm.selectedOption;
         if (vm.counter < vm.members.length - 1) {
-          // move forward
-          vm.counter++;
+          if(vm.question.goTo!=null && (vm.selectedOption!=vm.question.answerText)){
+            var prev = vm.counter;
+            vm.counter = vm.question.goTo;
+            vm.question = deliveryCheck.getQuestion(vm.members[vm.counter]);
+            vm.question.goToPrev = prev;
+          }
+          else{
+            // move forward
+            var prev = vm.counter;
+            vm.counter++;
+            vm.question = deliveryCheck.getQuestion(vm.members[vm.counter]);
+            vm.question.goToPrev = prev;
+          }
           // set the selection if available
           vm.selectedOption = vm.selectedOptions[vm.counter];
-          vm.question = deliveryCheck.getQuestion(vm.members[vm.counter]);
+          
         } else {
           var answers = [];
           for (var i = 0; i < vm.selectedOptions.length; i++) {
@@ -79,7 +90,10 @@
 
     vm.previousQuestion = function() {
       if (vm.counter > 0) {
-        vm.counter--;
+        if(vm.question.goToPrev==null)
+          vm.counter--;
+        else
+          vm.counter=vm.question.goToPrev;
         vm.question = deliveryCheck.getQuestion(vm.members[vm.counter]);
         var hashCode = vm.selectedOptions[vm.counter];
         for (var i = 0; i < vm.question.questionOptions.length; i++) {
