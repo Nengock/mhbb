@@ -18,9 +18,11 @@
 
       if (vm.members && vm.members.length > 0) {
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.question.questionOptions = shuffle(vm.question.questionOptions);
       } else {
         vm.members = shuffle(knowledgeCheck.getQuestions());
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.question.questionOptions = shuffle(vm.question.questionOptions);
       }
     });
 
@@ -51,6 +53,7 @@
           // set the selection if available
           vm.selectedOption = vm.selectedOptions[vm.counter];
           vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+          vm.question.questionOptions = shuffle(vm.question.questionOptions);
         } else {
           var answers = [];
           for (var i = 0; i < vm.selectedOptions.length; i++) {
@@ -78,6 +81,7 @@
       if (vm.counter > 0) {
         vm.counter--;
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
+        vm.question.questionOptions = shuffle(vm.question.questionOptions);
         var hashCode = vm.selectedOptions[vm.counter];
         for (var i = 0; i < vm.question.questionOptions.length; i++) {
           var optionHashCode = vm.hashCode(vm.question.questionOptions[i]);

@@ -11,7 +11,10 @@
       "questionText": "Type of HBB Training:",
       "questionOptions": [
         "Initial",
-        "Refresher"
+        "Refresher",
+        "CME",
+        "Daily Practice",
+        "QI Visit"
       ]
     }, {
       "questionUuid": "1cc60a7f-3abe-4afd-a4e9-4c00e6b5cb9a",
@@ -44,15 +47,6 @@
       "questionUuid": "3568df68-cb1c-4f40-9b78-a50325e6d772",
       "questionText": "Apply the mask to make a firm seal.",
       "questionDescription": "A firm seal permits chest movement when the bag is squeezed.",
-      "answerText": hashCode("Done"),
-      "questionOptions": [
-        "Done",
-        "Not Done"
-      ]
-    }, {
-      "questionUuid": "c273fb21-0e7d-40da-b300-13cd9e241556",
-      "questionText": "Apply the mask to make a firm seal.",
-      "questionDescription": "Extend the head, place mask on the chin, then over the mouth and nose.",
       "answerText": hashCode("Done"),
       "questionOptions": [
         "Done",
@@ -126,8 +120,13 @@
     }
 
     function validate(answers) {
-      var correct = [];
-      var incorrect = [];
+      var score = 0;
+
+      var firstPartial = false;
+      var secondPartial = false;
+
+      answers.shift();
+
       _.forEach(answers, function(answer) {
         var question = _.find(questions, function(question) {
           if (answer.question === question.questionUuid) {
@@ -137,15 +136,32 @@
         if (question.answerText === answer.answer
           || answer.answer === hashCode('Initial')
           || answer.answer === hashCode('Refresher')) {
-          correct.push(answer.question);
-        } else {
-          incorrect.push(answer.question);
+
+          if (question.questionUuid === '1cc60a7f-3abe-4afd-a4e9-4c00e6b5cb9a'
+            || question.questionUuid === 'e05090bd-da12-46c6-99f6-feacb2d21f88') {
+            firstPartial = !firstPartial;
+            score = score + 0.5;
+          } else if (question.questionUuid === '6f0b9189-63a0-4cb6-8d4d-e2ddd09719e4'
+            || question.questionUuid === '3568df68-cb1c-4f40-9b78-a50325e6d772') {
+            secondPartial = !secondPartial;
+            score = score + 0.5;
+          } else {
+            score = score + 1;
+          }
+
         }
       });
 
+      if (firstPartial) {
+        score = score - 0.5;
+      }
+
+      if (secondPartial) {
+        score = score - 0.5;
+      }
+
       return {
-        correct: correct,
-        incorrect: incorrect
+        score: score
       }
     }
 

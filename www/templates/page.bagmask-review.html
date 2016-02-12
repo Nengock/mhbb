@@ -5,8 +5,10 @@
       <div class="item item-body">
         <div>
           <ol>
-            <li>{{ bagMaskReview.correct.length }} of 10 steps ticked 'Done'.</li>
-            <li>{{ bagMaskReview.incorrect.length }} of 10 steps ticked 'Not Done'.</li>
+            <li>BMV skills ticked 'Done': {{ bagMaskReview.score }} of 7.</li>
+            <li>BMV skills ticked 'Not Done': {{ 7 - bagMaskReview.score }} of 7.</li>
+            <li ng-show="{{ bagMaskReview.score >= 7 }}">Learner passed BMV skills check.</li>
+            <li ng-show="{{ bagMaskReview.score < 7 }}">Learner did not pass BMV skills check.</li>
           </ol>
         </div>
       </div>

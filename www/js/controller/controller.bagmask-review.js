@@ -7,9 +7,8 @@
   function BagMaskReviewController($state, $stateParams) {
     var vm = this;
 
+    vm.score = $stateParams.score;
     vm.attempt = $stateParams.attempt;
-    vm.correct = $stateParams.correct;
-    vm.incorrect = $stateParams.incorrect;
 
     vm.retake = function() {
       $state.go('bagmask-check', {

@@ -62,8 +62,7 @@
         templateUrl: 'templates/page.bagmask-check.html',
         params: {
           attempt: null,
-          correct: [],
-          incorrect: []
+          score: 0
         }
       })
       .state('bagmask-review', {
@@ -73,8 +72,7 @@
         templateUrl: 'templates/page.bagmask-review.html',
         params: {
           attempt: null,
-          correct: [],
-          incorrect: []
+          score: 0
         }
       })
       .state('osce-check', {

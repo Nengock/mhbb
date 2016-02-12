@@ -70,8 +70,7 @@
           var validated = bagMaskCheck.validate(answers);
           $state.go('bagmask-review', {
             attempt: vm.attempt,
-            correct: validated.correct.concat(vm.correct),
-            incorrect: validated.incorrect
+            score: validated.score
           });
         }
       }

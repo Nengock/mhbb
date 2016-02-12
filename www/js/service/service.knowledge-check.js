@@ -7,6 +7,18 @@
   function knowledgeCheck(_){
 
     var questions = [{
+      "questionUuid": "d99ede15-88f1-4d78-99b7-444f47f8ff45",
+      "questionType": "single-choice",
+      "questionText": "When is the HBB Knowledge check being administered?",
+      "questionOptions": [
+        "Pre-test, Initial training",
+        "Post-test, Initial training",
+        "Pre-test, Refresher training",
+        "Post-test, Refresher training",
+        "CME",
+        "QI Visit"
+      ]
+    }, {
       "questionUuid": "d99ede15-88f1-4d78-99b7-444e4718af44",
       "questionType": "single-choice",
       "questionText": "In the first minute after birth, you should",
@@ -108,7 +120,7 @@
     }, {
       "questionUuid": "4f784e15-7706-4f44-991d-4f78005f5a69",
       "questionType": "single-choice",
-      "questionText": "A newborn baby is quiet, limp and not crying. The baby does not respond to stepsto stimulate breathing. What should you do next?",
+      "questionText": "A newborn baby is quiet, limp and not crying. The baby does not respond to steps to stimulate breathing. What should you do next?",
       "answerText": hashCode("Begin ventilation"),
       "questionOptions": [
         "Slap the baby’s back",
@@ -134,7 +146,7 @@
       "answerText": hashCode("Breathing"),
       "questionOptions": [
         "Length",
-        "Breathing ",
+        "Breathing",
         "Smile",
         "Urine output"
       ]
@@ -168,7 +180,7 @@
       "questionOptions": [
         "Open all the windows to allow warm air to circulate",
         "Give the baby a bath after birth",
-        "Place hot water bottles next to the baby’sskin",
+        "Place hot water bottles next to the baby’s skin",
         "Place the baby skin-to-skin with mother"
       ]
     }, {
@@ -216,6 +228,9 @@
     function validate(answers) {
       var correct = [];
       var incorrect = [];
+
+      answers.shift();
+
       _.forEach(answers, function(answer) {
         var question = _.find(questions, function(question) {
           if (answer.question === question.questionUuid) {
