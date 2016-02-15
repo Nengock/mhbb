@@ -94,7 +94,8 @@
         params: {
           attempt: null,
           correct: [],
-          incorrect: []
+          incorrect: [],
+          mandatories:[]
         }
       })
       .state('delivery-check', {

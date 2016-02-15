@@ -10,6 +10,9 @@
     vm.attempt = $stateParams.attempt;
     vm.correct = $stateParams.correct;
     vm.incorrect = $stateParams.incorrect; 
+    vm.mandatories = $stateParams.mandatories;
+
+    vm.passed = vm.correct.length>9 && vm.mandatories[0]&& vm.mandatories[1]&& vm.mandatories[2];
 
     vm.retake = function() {
       $state.go('osce-check', {

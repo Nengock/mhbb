@@ -10,10 +10,11 @@
       "questionUuid": uuid.v1(),
       "questionText": "Type of HBB Training:",
       "questionOptions": [
-        "Initial - Post Only",
-        "Refresher - Pre-test",
-        "Refresher - Post-test",
-        "On-the-Job"
+        "Initial Training – Post-test only",
+        "Refresher training – Pre-test",
+        "Refresher training – Post-test",
+        "CME",
+        "QI Visit"
       ]
     }, {
       "questionUuid": uuid.v1(),
@@ -144,16 +145,24 @@
     function validate(answers) {
       var correct = [];
       var incorrect = [];
+      var mandatories = [false, false, false];
       _.forEach(answers, function(answer) {
         var question = _.find(questions, function(question) {
           if (answer.question === question.questionUuid) {
             return question;
           }
         });
-        if (question.answerText === answer.answer
-          || answer.answer === hashCode('Initial')
-          || answer.answer === hashCode('Refresher')) {
+        if (question.answerText === answer.answer) {
           correct.push(answer.question);
+          if(question.questionText.indexOf("Dries")>=0){
+            mandatories[0] = true;
+          }
+          if(question.questionText.indexOf("not crying")>=0){
+            mandatories[1] = true;
+          }
+          if(question.questionText.indexOf("clears airway")>=0){
+            mandatories[2] = true;
+          }
         } else {
           incorrect.push(answer.question);
         }
@@ -161,7 +170,8 @@
 
       return {
         correct: correct,
-        incorrect: incorrect
+        incorrect: incorrect,
+        mandatories: mandatories
       }
     }
 

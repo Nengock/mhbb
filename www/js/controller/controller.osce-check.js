@@ -71,7 +71,8 @@
           $state.go('osce-review', {
             attempt: vm.attempt,
             correct: validated.correct.concat(vm.correct),
-            incorrect: validated.incorrect
+            incorrect: validated.incorrect,
+            mandatories: validated.mandatories
           });
         }
       }
