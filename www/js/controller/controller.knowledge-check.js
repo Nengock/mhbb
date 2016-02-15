@@ -20,9 +20,13 @@
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
         vm.question.questionOptions = shuffle(vm.question.questionOptions);
       } else {
-        vm.members = shuffle(knowledgeCheck.getQuestions());
+        vm.members = knowledgeCheck.getQuestions();
+
+        var shifted = vm.members.shift();
+        vm.members = shuffle(vm.members);
+        vm.members.unshift(shifted);
+
         vm.question = knowledgeCheck.getQuestion(vm.members[vm.counter]);
-        vm.question.questionOptions = shuffle(vm.question.questionOptions);
       }
     });
 

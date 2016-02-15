@@ -125,7 +125,7 @@
       "questionOptions": [
         "Slap the baby’s back",
         "Hold the baby upside down",
-        "Squeeze the baby’sribs",
+        "Squeeze the baby’s ribs",
         "Begin ventilation"
       ]
     }, {

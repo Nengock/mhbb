@@ -8,10 +8,12 @@
 
     var questions = [{
       "questionUuid": "15f9dd6f-8668-4906-9b01-0d5f31749161",
-      "questionText": "Type of HBB Training:",
+      "questionText": "Type of BMV skills evaluation:",
       "questionOptions": [
-        "Initial",
-        "Refresher",
+        "Pre-test, Initial training",
+        "Post-test, Initial training",
+        "Pre-test, Refresher training",
+        "Post-test, Refresher training",
         "CME",
         "Daily Practice",
         "QI Visit"
