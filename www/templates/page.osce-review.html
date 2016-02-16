@@ -1,14 +1,13 @@
 <ion-view view-title="OSCE Station A" hide-back-button="true">
-  <ion-content class="padding" scroll="false">
+  <ion-content class="padding">
     <div class="list animated slideInRight">
       <div class="item item-divider">Attempt {{ osceReview.attempt }}</div>
-      <div class="item item-divider item-text-wrap" style="font-size:10px; font-style:italic"><em>Please note:  Learners must have at least 10/13 steps ticked “done” AND “Done” must be ticked for dries thoroughly, recognized baby is not crying, positions head and clears airway.</em>
+      <div class="item item-divider item-text-wrap" style="font-size:10px; font-style:italic"><em>Scoring:  Learners must have at least 10/13 steps ticked “done” AND “Done” must be ticked for dries thoroughly, recognized baby is not crying, positions head and clears airway.</em>
       </div>
       <div class="item item-body">
         <div>
           <ol>
-            <li>OSCE A {{ osceReview.correct.length }} of 13 steps ticked 'Done'.</li>
-            <li>OSCE A {{ osceReview.incorrect.length>0?osceReview.incorrect.length-1:0 }} of 13 steps ticked 'Not Done'.</li>
+            <li>{{ osceReview.correct.length }} of 13 steps ticked 'Done' and {{ osceReview.incorrect.length>0?osceReview.incorrect.length-1:0 }} of 13 steps ticked 'Not Done'.</li>
             <li ng-class="{balanced: osceReview.mandatories[0], assertive: !osceReview.mandatories[0]}">Dries thoroughly is ticked {{osceReview.mandatories[0]?'Done':'Not Done'}}</li>
             <li ng-class="{balanced: osceReview.mandatories[1], assertive: !osceReview.mandatories[1]}">Recognizes baby is not crying is ticked {{osceReview.mandatories[1]?'Done':'Not Done'}}</li>
             <li ng-class="{balanced: osceReview.mandatories[2], assertive: !osceReview.mandatories[2]}">Positions head and clears airway is ticked {{osceReview.mandatories[2]?'Done':'Not Done'}}</li>
