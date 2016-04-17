@@ -10,7 +10,12 @@
       <p>Question {{ deliveryCheck.counter + 1 }} of {{ deliveryCheck.members.length }}</p>
     </div>
     <ion-list>
-      <div class="item item-divider item-positive item-text-wrap">{{ deliveryCheck.question.questionText }}</div>
+      <div class="item item-divider item-positive item-text-wrap">
+        {{ deliveryCheck.question.questionText }}
+        <ol ng-show="deliveryCheck.question.questionDescription">
+          <li>{{ deliveryCheck.question.questionDescription }}</li>
+        </ol>
+      </div>
       <div ng-switch="deliveryCheck.question.answerType">
         <label class="item item-input" ng-switch-when="Text">
           <input type="text" placeholder="Type your answer here" ng-model="deliveryCheck.selectedOption" >

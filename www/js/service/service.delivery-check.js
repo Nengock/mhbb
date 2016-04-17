@@ -9,6 +9,8 @@
     var questions = [{
       "questionUuid": uuid.v1(),
       "questionText": "Name of the Master Trainer filling out this form ",
+      "answerText": hashCode("Other"),
+      "goTo" : 2, //if not answerText
       "questionOptions": [
         "Anne Kipsuto",
         "Bonny Munyalo",
@@ -19,11 +21,38 @@
         "Janet Rukunga ",
         "Josephat Nandabelwa",
         "Rita Mukosa",
-        "Sammy Onyapidi"
+        "Sammy Onyapidi",
+        "Other"
       ]
-    },  {
+    }, {
       "questionUuid": uuid.v1(),
-      "questionText": "Learner’s HBB ID",
+      "questionText": "Please describe who is “Other” ",
+      "answerType"  : "Text"
+    }, {
+      "questionUuid": uuid.v1(),
+      "questionText": "Name of health facility and country where observation is occurring",
+      "answerType"  : "Text"
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "In what type of health facility is the delivery observation occurring (Select only one answer)?",
+      "answerText": hashCode("Other"),
+      "goTo" : 5, //if not answerText
+      "questionOptions": [
+        "Tertiary Referral Hospital",
+        "District Hospital (County Hospital)",
+        "Sub-district Hospital (sub-County Hospital)",
+        "Mission Hospital",
+        "In-patient Private Hospital",
+        "Health Center",
+        "Dispensary",
+        "Health Outpost",
+        "Mobile unit",
+        "Home-based delivery, not in health facility",
+        "Other"
+      ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Please describe what is “Other” ",
       "answerType"  : "Text"
     },{
       "questionUuid": uuid.v1(),
@@ -31,7 +60,7 @@
       "answerType"  : "Date"
     }, {
       "questionUuid": uuid.v1(),
-      "questionText": "Were the following delivery or resuscitation items available? (can select more than one)",
+      "questionText": "Were the following delivery and/or resuscitation items available? (Tick all that are available).",
       "answerType"  : "Multi",
       "questionOptions": [
         "Clean delivery kit",
@@ -46,7 +75,7 @@
       "questionOptions": [
         "Yes",
         "No",
-        "Not Applicable"
+        "Not Applicable—single birth attendant"
       ]
     },{
       "questionUuid": uuid.v1(),
@@ -55,7 +84,7 @@
       "questionOptions": [
         "Yes",
         "No",
-        "Not Applicable"
+        "Not Applicable—single birth attendant"
       ]
     },{
       "questionUuid": uuid.v1(),
@@ -64,16 +93,18 @@
       "questionOptions": [
         "Yes",
         "No",
-        "Not Applicable"
+        "Not Applicable—single birth attendant"
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Before the baby is born did all of the delivery team “Wash their Hands well with Soap and Water?” ",
+      "questionText": "Before the baby is born, did all members of the delivery team wash their hands well with soap and water or use hand sanitizer? (Select only one answer). ",
       //"answerText": hashCode("Yes"),
       "questionOptions": [
-        "Yes",
-        "No",
-        "Not Applicable"
+        "Yes – All the delivery team cleaned their hands with soap and water or hand sanitizer",
+        "No – Soap and water or hand sanitizer were available, but not all members of the delivery team cleaned their hands",
+        "No -- No clean water available",
+        "No -- No soap available",
+        "No -- No hand sanitizer available"
       ]
     },{
       "questionUuid": uuid.v1(),
@@ -82,7 +113,7 @@
       "questionOptions": [
         "Yes",
         "No",
-        "Not Applicable"
+        "Not Applicable -- Clean gloves not available"
       ]
     },{
       "questionUuid": uuid.v1(),
@@ -91,7 +122,7 @@
       "questionOptions": [
         "Yes",
         "No",
-        "Not Applicable"
+        "Not Applicable – No space available for separate resuscitation/ventilation area"
       ]
     },{
       "questionUuid": uuid.v1(),
@@ -99,10 +130,13 @@
       //"answerText": hashCode("Yes"),
       "questionOptions": [
         "Yes",
-        "No",
-        "Not Applicable"
+        "No"
       ]
     },{
+      "questionUuid": uuid.v1(),
+      "questionText": "What date was mother admitted",
+      "answerType"  : "Date"
+    }, {
       "questionUuid": uuid.v1(),
       "questionText": "What time was mother admitted",
       "answerType"  : "Time"
@@ -128,7 +162,7 @@
       "questionUuid": uuid.v1(),
       "questionText": "Presentation ",
       "answerText": hashCode("Other"),
-      "goTo" : 16, //if not answerText
+      "goTo" : 20, //if not answerText
       "questionOptions": [
         "Cephalic",
         "Breech",
@@ -161,7 +195,8 @@
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Prolonged labor ",
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Prolonged Labor",
       //"answerText": hashCode("Done"),
       "questionOptions": [
         "Yes",
@@ -169,68 +204,65 @@
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Obstructed labor  ",
-      //"answerText": hashCode("Done"),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Obstructed Labor",
       "questionOptions": [
         "Yes",
         "No"
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Preeclampsia ",
-      //"answerText": hashCode("Done"),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Preeclampsia (high maternal blood pressure and protein in the urine)",
+      "questionOptions": [
+        "Yes",
+        "No",
+        "Unknown/Not assessed"
+      ]
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Eclampsia",
       "questionOptions": [
         "Yes",
         "No"
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Eclampsia",
-      //"answerText": hashCode("Done"),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Uterine Rupture",
       "questionOptions": [
         "Yes",
         "No"
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Uterine rupture ",
-      //"answerText": hashCode("Done"),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Cord prolapse",
       "questionOptions": [
         "Yes",
         "No"
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Cord prolapse",
-      //"answerText": hashCode("Done"),
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Bleeding",
       "questionOptions": [
-        "Yes",
-        "No"
-      ]
-    },{
-      "questionUuid": uuid.v1(),
-      "questionText": "Bleeding (i.e., placenta previa) ",
-      //"answerText": hashCode("Done"),
-      "questionOptions": [
-        "Yes",
-        "No"
+        "Yes, placenta previa",
+        "Yes, antepartum hemorrhage, not placenta previa",
+        "Yes, post-partum hemorrhage",
+        "No",
+        "Unknown/not assessed"
       ]
     },
     {
       "questionUuid": uuid.v1(),
-      "questionText": "Sepsis ",
-      //"answerText": hashCode("Done"),
-      "questionOptions": [
-        "Yes",
-        "No"
-      ]
-    },
-    {
-      "questionUuid": uuid.v1(),
-      "questionText": "Maternal Infection",
+      "questionText": "Pregnancy, labor, and delivery complications",
+      "questionDescription": "Obstructed Labor",
       "answerText": hashCode("Other"),
-      "goTo" : 28,
+      "goTo" : 31,
       "questionOptions": [
+        "Sepsis",
         "Uterine",
         "Malaria",
         "HIV",
@@ -246,7 +278,7 @@
       "questionUuid": uuid.v1(),
       "questionText": "Other complications ",
       "answerText": hashCode("Yes"),
-      "goTo"      : 30,
+      "goTo"      : 33,
       "questionOptions": [
         "Yes",
         "No"
@@ -257,7 +289,11 @@
       "answerType"  : "Text"
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Time of birth ",
+      "questionText": "What date was the baby born? ",
+      "answerType"  : "Date"
+    },{
+      "questionUuid": uuid.v1(),
+      "questionText": "What time was the baby born?",
       "answerType"  : "Time"
     },
     {
@@ -275,14 +311,14 @@
       //"answerText": hashCode("Done"),
       "questionOptions": [
         "Yes",
-        "No",
-        "Not Applicable"
+        "No – Towels or cloths were available, but baby not dried thoroughly",
+        "Not applicable – No towels or cloths were available"
       ]
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Did the baby cry or breathe? ",
       "answerText": hashCode("Yes"),
-      "goTo" : 41,
+      "goTo" : 45,
       "questionOptions": [
         "Yes",
         "No"
@@ -302,17 +338,19 @@
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Is the baby kept warm?  ",
-      //"answerText": hashCode("Done"),
+      "questionText": "Is the baby kept warm (tick all that apply)?",
+      "answerType": "Multi",
       "questionOptions": [
         "Wet cloth removed?",
-        "Baby wrapped in 2nd dry cloth and/or hat"
+        "Baby wrapped in 2nd dry cloth",
+        "Hat placed on baby’s head",
+        "Baby placed skin-to-skin with mother"
       ]
     },{
       "questionUuid": uuid.v1(),
       "questionText": "Who cut the cord? ",
       "answerText": hashCode("Other"),
-      "goTo" : 39,
+      "goTo" : 43,
       "questionOptions": [
         "Nurse Midwife",
         "Clinical Officer",
@@ -329,8 +367,8 @@
       "answerType"  : "Text"
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "When cutting the cord did the following occur ",
-      //"answerText": hashCode("Done"),
+      "questionText": "When cutting the cord, did the following occur (tick all that apply)?",
+      "answerType": "Multi",
       "questionOptions": [
         "Clean hands or gloves",
         "Delay cord cut 1-3 minutes",
@@ -338,9 +376,9 @@
       ]
     },{
       "questionUuid": uuid.v1(),
-      "questionText": "Birth attendant encourages early breastfeeding ",
+      "questionText": "Birth attendant encourages initiation of early breastfeeding",
       "answerText": hashCode("Done"),
-      "goTo"  : 50,
+      "goTo"  : 54,
       "questionOptions": [
         "Yes",
         "No",
@@ -378,7 +416,7 @@
       "questionUuid": uuid.v1(),
       "questionText": "Baby does NOT respond to initial resuscitation efforts",
       "answerText": hashCode("Yes"),
-      "goTo" : 50,
+      "goTo" : 54,
       "questionOptions": [
         "Yes",
         "No"

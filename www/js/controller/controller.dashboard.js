@@ -7,7 +7,7 @@
   function DashboardController($scope, localStorage) {
     var vm = this;
 
-    vm.attempt = localStorage.get('evaluation.attempt') || 0;
+    vm.attempt = 3;//localStorage.get('evaluation.attempt') || 0;
 
   }
 })();
